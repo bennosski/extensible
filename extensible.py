@@ -38,7 +38,7 @@ class extensible():
                 break
 
     def __call__(self, f):        
-        self.argnames = inspect.getfullargspec(self.f).args
+        self.argnames = inspect.getfullargspec(f).args
         if self.whichargs:
             args_to_iterate = [arg in self.whichargs for arg in self.argnames]
         else:
@@ -49,7 +49,7 @@ class extensible():
             iterators = [self._iterator(x) if args_to_iterate[i] else self._gen(x) for i,x in enumerate(args)]
 
             if all([isinstance(i, types.GeneratorType) for i in iterators]):
-                return self.f(*args)
+                return f(*args)
 
             return [wrapped_f(*a) for a in self._arggenerator(iterators)]
         
