@@ -4,7 +4,7 @@ A function decorator providing the flexibility to generalize functions to iterab
 
 If no iterable arguments are present, extensible functions simply evaluate the function at the given arguments.
 
-If an iterable argument is present, extensible functions return a list (nested if necessary) with the function evaluated at each of the values in the iterable argument while holding other non-iterable arguments constant. 
+If an iterable argument is present, extensible functions return a list (nested if necessary) with the function evaluated at each of the values in the iterable argument while holding other non-iterable arguments constant. Iterable arguments can be lists, tuples, or objects such as numpy arrays.
 
 If there are multiple iterable arguments, extensible functions will iterate through all the iterable arguments simultaneously.
 ```ruby
