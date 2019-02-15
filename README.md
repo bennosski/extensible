@@ -29,7 +29,7 @@ All iterable arguments are expected to be of the same length.
 
 If iterable arguments are of different lengths (not recommended), iteration will end based on the shortest of the iterable arguments.
 
-Arguments may be passed to the extensible decorator to specify the arguments over which the function should be made extensible. This is important in cases where some iterable arguments should not produce an interable outcome. The extensible decorator will only attempt to iterate over the specified arguments (if no arguments are specified then the extensible decorator will attempt to iterate over all iterable arguments). The arguments over which to iterate are specified as strings with the corresponding variable names of the arguments in the function being decorated.
+Arguments may be passed to the extensible decorator to specify the arguments over which the function should be made extensible. This is important in cases where some iterable arguments should not produce an interable outcome. The extensible decorator will only attempt to iterate over the specified arguments (if no arguments are specified then the extensible decorator will attempt to iterate over all iterable arguments). The arguments over which to iterate are specified as strings with the corresponding variable names of the arguments in the decorated function.
 ```ruby
 @extensible('x', 'y')
 def f(x, y, z):
