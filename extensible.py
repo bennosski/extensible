@@ -2,8 +2,9 @@ import types
 import inspect
 
 class extensible():
-
     '''
+    A function decorator adding flexibility for defining functions to work on both iterable and non-iterable arguments.
+
     If no iterable arguments are present, extensible functions simply evaluate the function at the given arguments.
 
     If iterable arguments are present, extensible functions return a list (nested if necessary) with the function evaluated at each of the values in the iterable arguments while holding non-iterable arguments constant.
@@ -14,7 +15,7 @@ class extensible():
     
     If iterable arguments are of different lengths (not recommended), iteration will end based on the shortest of the iterable arguments.
     
-    Arguments may be passed to the extensible decorator to specify over which arguments the functions should be made extensible. This is important in cases where some iterable arguments should not produce an interable outcome. The extensible decorator will only attempt to iterate over the specified arguments but if no arguments are specified then the extensible decorator will attempt to iterate over all iterable arguments. The arguments over which to iterate are specified as strings with the corresponding variable names of the arguments in the function being decorated.
+    Arguments may be passed to the extensible decorator to specify the arguments over which the function should be made extensible. This is important in cases where some iterable arguments should not produce an interable outcome. The extensible decorator will only attempt to iterate over the specified arguments (if no arguments are specified then the extensible decorator will attempt to iterate over all iterable arguments). The arguments over which to iterate are specified as strings with the corresponding variable names of the arguments in the function being decorated.
     '''
     
     def __init__(self, *whichargs):
@@ -36,9 +37,7 @@ class extensible():
             except:
                 break
 
-    def __call__(self, f):
-        self.f = f
-        
+    def __call__(self, f):        
         self.argnames = inspect.getfullargspec(self.f).args
         if self.whichargs:
             args_to_iterate = [arg in self.whichargs for arg in self.argnames]
